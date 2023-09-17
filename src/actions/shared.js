@@ -25,7 +25,7 @@ export function handleInitialData () {
     }
 }
 
-export function shared(user) {
+export function setCurrentUser(user) {
     return {
         type: SET_CURRENT_USER,
         user
@@ -34,6 +34,6 @@ export function shared(user) {
 
 export function handleLogin(user) {
     return (dispatch) => {
-        dispatch(setCurrentUser(shared))
+        dispatch(setCurrentUser(user))
     }
 }

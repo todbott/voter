@@ -6,7 +6,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import users from "./reducers/users";
 import questions from "./reducers/questions";
-import shared from "./reducers/shared"
+import current_user from "./reducers/current_user"
 import logger from "./middleware/logger";
 import thunk from "redux-thunk";
 import { loadingBarReducer } from "react-redux-loading-bar"
@@ -14,7 +14,7 @@ import { loadingBarReducer } from "react-redux-loading-bar"
 const reducers = ({
     users,
     questions,
-    shared,
+    current_user,
     logger,
     loadingBar: loadingBarReducer
 })
