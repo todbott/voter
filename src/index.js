@@ -10,6 +10,7 @@ import current_user from "./reducers/current_user"
 import logger from "./middleware/logger";
 import thunk from "redux-thunk";
 import { loadingBarReducer } from "react-redux-loading-bar"
+import { Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 
 const reducers = ({
     users,
@@ -21,7 +22,9 @@ const reducers = ({
 const store = configureStore({ reducer: reducers, middleware: [thunk, logger] })
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Login />
-    </Provider>
+    <BrowserRouter>
+        <Provider store={store}>
+            <Login />
+        </Provider>
+    </BrowserRouter>
     , document.getElementById("root"));
