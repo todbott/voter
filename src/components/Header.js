@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
     const { current_user } = props;
@@ -6,6 +7,9 @@ const Header = (props) => {
     return (
         <div>
             header -- welcome {current_user.user}
+            <Link to='/home'>Home</Link>
+            <Link to='/leaderboard'>Leaderboard</Link>
+            <Link to='/add'>Create a poll</Link>
         </div>
     )
 }

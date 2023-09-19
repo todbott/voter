@@ -1,17 +1,21 @@
 import { connect } from "react-redux";
-import Header from './Header';
+import { React, useState } from 'react';
+import { PollCard } from './PollCard';
+import { useNavigate, Link } from "react-router-dom";
 
 const Home = (props) => {
+
+    const navigate = useNavigate();
+
+    const [answeredVisible, setAnsweredVisible] = useState(false)
+
     const { questions, users, current_user } = props;
 
-    const showDone = (e, q) => {
-        console.log(q);
+    // const showQuestion = (e, q) => {
+    //     console.log(q);
+    //     navigate('/questions', {state:{id:q.id}})
         
-    }
-
-    const showNew = (e, q) => {
-        console.log(q);
-    }
+    // }
 
     const newQuestions = [];
     const doneQuestions = [];
@@ -27,25 +31,23 @@ const Home = (props) => {
     })
     return (
         <div>
-            <Header />
+            <button onClick={() => {
+                answeredVisible ? setAnsweredVisible(false) : setAnsweredVisible(true)
+            }}>Show {answeredVisible ? 'unanswered questions' : 'questions that have alrady been answered'}</button>
             <ul>
             {
-                newQuestions.map((q) => (
+                answeredVisible === false && newQuestions.map((q) => (
                     <li key={q.id}>
-                        <button onClick={(e) => showNew(e, q)}>
-                            {q.id}
-                        </button>
+                        <Link to={`questions/${q.id}`}>{q.id}</Link>
                     </li>
                 ))
             }
             </ul>
             <ul>
             {
-                doneQuestions.map((q) => (
+                answeredVisible === true && doneQuestions.map((q) => (
                     <li key={q.id}>
-                        <div onClick={(e) => showDone(e, q)}>
-                            {q.id}
-                        </div>
+                        <Link to={`questions/${q.id}`}>{q.id}</Link>
                     </li>
                 ))
             }
