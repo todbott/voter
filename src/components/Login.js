@@ -14,7 +14,6 @@ import PollCard from './PollCard';
 
 
 
-
 const Login = (props) => {
 
   const [loggedIn, setLoggedIn] = useState(false);
@@ -23,8 +22,11 @@ const Login = (props) => {
 
   const Screen = () => {
     return (
-      <div>Hey!
-        <button onClick={(e) => login(e.target)}>Login</button>
+      <div>
+        <button onClick={(e) => login(e.target)}>
+             Login
+        </button>
+          
       </div>
     )
   }
