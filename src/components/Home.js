@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { React, useState } from 'react';
 import { PollCard } from './PollCard';
 import { useNavigate, Link } from "react-router-dom";
+import Container from "react-bootstrap/Container";
 
 const Home = (props) => {
 
@@ -10,12 +11,6 @@ const Home = (props) => {
     const [answeredVisible, setAnsweredVisible] = useState(false)
 
     const { questions, users, current_user } = props;
-
-    // const showQuestion = (e, q) => {
-    //     console.log(q);
-    //     navigate('/questions', {state:{id:q.id}})
-        
-    // }
 
     const newQuestions = [];
     const doneQuestions = [];
@@ -30,10 +25,10 @@ const Home = (props) => {
         }
     })
     return (
-        <div>
+        <Container>
             <button onClick={() => {
                 answeredVisible ? setAnsweredVisible(false) : setAnsweredVisible(true)
-            }}>Show {answeredVisible ? 'unanswered questions' : 'questions that have alrady been answered'}</button>
+            }}>Show {answeredVisible ? 'New Questions' : 'Old Questions'}</button>
             <ul>
             {
                 answeredVisible === false && newQuestions.map((q) => (
@@ -53,7 +48,7 @@ const Home = (props) => {
             }
             </ul>
 
-        </div>
+        </Container>
     )
 }
 

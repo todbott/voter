@@ -11,6 +11,11 @@ import Header from "./Header";
 import LeaderBoard from './LeaderBoard';
 import NewPollCard from './NewPollCard';
 import PollCard from './PollCard';
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 
@@ -22,13 +27,13 @@ const Login = (props) => {
 
   const Screen = () => {
     return (
-      <div>
-        <button onClick={(e) => login(e.target)}>
-             Login
-        </button>
-          
-      </div>
-    )
+      <DropdownButton title="login" onSelect={(e) => login(e)}>
+          <Dropdown.Item eventKey="sarahedo">Sarah Edo</Dropdown.Item>
+          <Dropdown.Item eventKey="mtsamis">Mike Tsamis</Dropdown.Item>
+          <Dropdown.Item eventKey="tylermcginnis">Tyler McGinnis</Dropdown.Item>
+          <Dropdown.Item eventKey="zoshikanlu">Zenobia Oshikanlu</Dropdown.Item>
+      </DropdownButton>
+    );
   }
 
   useEffect(() => {
@@ -36,15 +41,13 @@ const Login = (props) => {
   }, [props]);
 
   const login = (user) => {
-    console.log('button was clicked')
-    user = "sarahedo"
     props.dispatch(handleLogin({user}));
     setLoggedIn(true)
     navigate("/home")
   }
 
   return (
-      <div>
+      <Container fluid style={{ paddingTop: 10 }}>
         {
           props.loading === true ? <LoadingBar /> : (
             loggedIn && (<Header />)
@@ -65,7 +68,7 @@ const Login = (props) => {
         
         
 
-      </div>
+      </Container>
 
 
   )
