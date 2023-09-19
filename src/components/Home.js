@@ -19,7 +19,9 @@ const Home = (props) => {
 
     const newQuestions = [];
     const doneQuestions = [];
+    console.group("Questions")
     console.log(questions)
+    console.groupEnd()
     Object.values(questions).forEach((q) => {
         if (!(q.optionOne.votes.includes(current_user.user)) && !(q.optionTwo.votes.includes(current_user.user))) {
             newQuestions.push(q)

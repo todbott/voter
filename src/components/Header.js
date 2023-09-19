@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const Header = (props) => {
     const { current_user } = props;
-    console.log(current_user)
     return (
         <div>
             header -- welcome {current_user.user}

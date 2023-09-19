@@ -20,10 +20,12 @@ export default function questions(state = [], action) {
                   }
             }
         case SAVE_NEW_QUESTION:
-            console.log(state)
+            console.group("The question we're adding")
+            console.log(action.question)
+            console.groupEnd();
             return {
                 ...state,
-                ...action.question,
+                [action.question.id]: action.question,
                 
             }
     default:
