@@ -1,16 +1,24 @@
 import { connect } from "react-redux";
 import { React, useState, Fragment } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
+import { handleSaveQuestionAnswer } from "../actions/questions";
+import { handleSaveUserAnswer } from "../actions/users";
 
 const PollCard = (props) => {
 
-    const { questions, users, current_user } = props;
+    const { questions, users, current_user, dispatch } = props;
     const { question_id } = useParams();
 
     const navigate = useNavigate();
 
-    const answerQuestion = (e, q) => {
-        console.log(q);
+    const answerQuestion = (e, qid, ans) => {
+        let info = {
+            authedUser: current_user.user,
+            qid: qid,
+            answer: ans
+        }
+        dispatch(handleSaveQuestionAnswer(info))
+        dispatch(handleSaveUserAnswer(info))
         navigate('/home')
     }
 
@@ -18,10 +26,6 @@ const PollCard = (props) => {
     console.log(question)
     let option_one_percent = (question[0].optionOne.votes.length/Object.values(users).length)*100
     let option_two_percent = (question[0].optionTwo.votes.length/Object.values(users).length)*100
-
-    console.log(option_one_percent, " ", option_two_percent)
-
-
 
     return (
         <div>
@@ -34,11 +38,15 @@ const PollCard = (props) => {
                     <Fragment>
                         {question[0].optionOne.votes.length} people ({option_one_percent} percent) chose option 1
                         {question[0].optionTwo.votes.length} people ({option_two_percent} percent) chose option 2
-                        You chose {question[0].optionOne.votes.includes(current_user) ? 'option one ' : 'option two'}
+                        You chose {question[0].optionOne.votes.includes(current_user.user) ? 'option one ' : 'option two'}
                     </Fragment>
                 ) : 
                 (
-                    <div>NoHey</div>
+                    <Fragment>
+                        <button onClick={(e) => answerQuestion(e, question[0].id, 'optionOne')} >{question[0].optionOne.text}</button>
+                        <button onClick={(e) => answerQuestion(e, question[0].id, 'optionTwo')} >{question[0].optionTwo.text}</button>
+                    </Fragment>
+                   
                 )
             )}
                 
