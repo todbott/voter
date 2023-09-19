@@ -29,20 +29,19 @@ export function handleSaveQuestionAnswer (info) {
     }
 }
 
-export function saveNewQuestion({ optionOneText, optionTwoText, author }) {
+export function saveNewQuestion(question) {
+    console.log("The question is ", question)
     return {
         type: SAVE_NEW_QUESTION,
-        optionOneText,
-        optionTwoText,
-        author
+        question: question
     }
 }
 
 export function handleSaveNewQuestion (info) {
     return (dispatch) => {
-        dispatch(saveNewQuestion(info))
-        return _saveQuestion(info).catch((e) => {
-            console.log(e)
+        return _saveQuestion(info).then(q => {
+            console.log(q);
+            dispatch(saveNewQuestion(q))
         })
     }
 }
