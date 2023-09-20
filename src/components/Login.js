@@ -42,7 +42,12 @@ const Login = (props) => {
     props.dispatch(handleLogin({user}));
     setLoggedIn(true)
     localStorage.setItem('user', user)
-    navigate("/home")
+    console.log(location.state.from.pathname)
+    if (location.state?.from) {
+      navigate(location.state.from.pathname)
+    } else {
+      navigate("/home")
+    }
   }
 
   const loggedInUser = localStorage.getItem("user");

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { React, useState, Fragment, useEffect } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { handleSaveQuestionAnswer } from "../actions/questions";
 import { handleSaveUserAnswer } from "../actions/users";
 import Card from 'react-bootstrap/Card';
@@ -12,12 +12,13 @@ const PollCard = (props) => {
     const { question_id } = useParams();
 
     const navigate = useNavigate();
+    const location = useLocation()
     const loggedInUser = localStorage.getItem("user");
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
         if (!loggedInUser) {
-            navigate("/", {state: {loggedIn: 'no'}})
+            navigate("/", {state: {loggedIn: 'no', from: location}})
         }
     },[])
 

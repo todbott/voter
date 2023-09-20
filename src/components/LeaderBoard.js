@@ -1,15 +1,16 @@
 import { connect } from "react-redux";
 import { useState, Fragment, useEffect } from 'react';
 import Card from "react-bootstrap/Card";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const LeaderBoard = (props) => {
 
     const { questions, users, current_user } = props;
+    const location = useLocation();
     const loggedInUser = localStorage.getItem("user");
     useEffect(() => {
         if (!loggedInUser) {
-            navigate("/", {state: {loggedIn: 'no'}})
+            navigate("/", {state: {loggedIn: 'no', from: location}})
         }
     },[])
 
@@ -24,7 +25,6 @@ const LeaderBoard = (props) => {
         return Object.create({user, avatarURL, numberAuthored, numberAnswered, total})})
        
     const sorted = Object.values(mapped).sort((a, b) => b.total-a.total)
-
 
         return (
             <div>

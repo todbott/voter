@@ -9,12 +9,13 @@ import { Card } from "react-bootstrap";
 const Home = (props) => {
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [answeredVisible, setAnsweredVisible] = useState(false)
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
         if (!loggedInUser) {
-            navigate("/", {state: {loggedIn: 'no'}})
+            navigate("/", {state: {loggedIn: 'no', from: location}})
         }
     },[])
 
@@ -27,8 +28,6 @@ const Home = (props) => {
 
     const newQuestions = [];
     const doneQuestions = [];
-
-    const location = useLocation();
     
     try {
         if (!location.state.exists) {
