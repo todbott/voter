@@ -30,7 +30,6 @@ export function handleSaveQuestionAnswer (info) {
 }
 
 export function saveNewQuestion(question) {
-    console.log("The question is ", question)
     return {
         type: SAVE_NEW_QUESTION,
         question: question

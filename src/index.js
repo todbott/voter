@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "./index.css";
 import Login from "./components/Login";
 import { configureStore } from "@reduxjs/toolkit";
@@ -10,7 +9,8 @@ import current_user from "./reducers/current_user"
 import logger from "./middleware/logger";
 import thunk from "redux-thunk";
 import { loadingBarReducer } from "react-redux-loading-bar"
-import { Router, Route, Routes, BrowserRouter } from 'react-router-dom';
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from "react-router-dom";
 
 const reducers = ({
     users,
@@ -21,10 +21,20 @@ const reducers = ({
 })
 const store = configureStore({ reducer: reducers, middleware: [thunk, logger] })
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container); 
+root.render(
     <BrowserRouter>
         <Provider store={store}>
             <Login />
         </Provider>
     </BrowserRouter>
-    , document.getElementById("root"));
+    );
+
+// ReactDOM.render(
+//     <BrowserRouter>
+//         <Provider store={store}>
+//             <Login />
+//         </Provider>
+//     </BrowserRouter>
+//     , document.getElementById("root"));

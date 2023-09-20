@@ -5,7 +5,7 @@ import { handleLogin } from "../actions/shared";
 import { LoadingBar } from "react-redux-loading-bar";
 import { Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 import Home from "./Home";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Header from "./Header";
 import LeaderBoard from './LeaderBoard';
@@ -25,16 +25,14 @@ const Login = (props) => {
 
   const navigate = useNavigate();
 
-  const Screen = () => {
-    return (
-      <DropdownButton title="login" onSelect={(e) => login(e)}>
-          <Dropdown.Item eventKey="sarahedo">Sarah Edo</Dropdown.Item>
-          <Dropdown.Item eventKey="mtsamis">Mike Tsamis</Dropdown.Item>
-          <Dropdown.Item eventKey="tylermcginnis">Tyler McGinnis</Dropdown.Item>
-          <Dropdown.Item eventKey="zoshikanlu">Zenobia Oshikanlu</Dropdown.Item>
-      </DropdownButton>
-    );
-  }
+  const location = useLocation();
+    
+  try {
+    console.log(location.state)
+      if (location.state.loggedIn === 'no') {
+        alert("Please log in to access that page")
+      }
+  } catch {}
 
   useEffect(() => {
     props.dispatch(handleInitialData())
@@ -43,34 +41,37 @@ const Login = (props) => {
   const login = (user) => {
     props.dispatch(handleLogin({user}));
     setLoggedIn(true)
+    localStorage.setItem('user', user)
     navigate("/home")
   }
 
+  const loggedInUser = localStorage.getItem("user");
+
   return (
+    
       <Container fluid style={{ paddingTop: 10 }}>
         {
           props.loading === true ? <LoadingBar /> : (
-            loggedIn && (<Header />)
+            loggedInUser && (<Header />)
         )}
             
             <Routes>
                 <Route
                   exact path="/"
-                  element={<Screen />}
+                  element={
+                    <DropdownButton title="login" onSelect={(e) => login(e)}>
+                      <Dropdown.Item eventKey="sarahedo">Sarah Edo</Dropdown.Item>
+                      <Dropdown.Item eventKey="mtsamis">Mike Tsamis</Dropdown.Item>
+                      <Dropdown.Item eventKey="tylermcginnis">Tyler McGinnis</Dropdown.Item>
+                      <Dropdown.Item eventKey="zoshikanlu">Zenobia Oshikanlu</Dropdown.Item>
+                  </DropdownButton>}
                 />
                 <Route path="/home" element={<Home />} />
                 <Route path="/leaderboard" element={<LeaderBoard />} />
                 <Route path="/add" element={<NewPollCard />} />
                 <Route path="/home/questions/:question_id" element={<PollCard />} />
               </Routes>
-              
-          
-        
-        
-
       </Container>
-
-
   )
 };
 
