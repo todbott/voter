@@ -39,7 +39,6 @@ export function saveNewQuestion(question) {
 export function handleSaveNewQuestion (info) {
     return (dispatch) => {
         return _saveQuestion(info).then(q => {
-            console.log(q);
             dispatch(saveNewQuestion(q))
         })
     }

@@ -8,7 +8,6 @@ export default function users(state = [], action) {
                 ...action.users,
             }
         case SAVE_USER_ANSWER:
-            console.log(state)
             return {
                 ...state,
                 [action.authedUser]: {

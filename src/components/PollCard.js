@@ -35,7 +35,18 @@ const PollCard = (props) => {
 
     const question = Object.values(questions).filter((q) => q.id === question_id)
     if (question.length === 0) {
-        navigate("/home", {state: {exists: false}})
+        return (
+            <Card>
+                <Card.Body>
+                    <Card.Title>
+                        404 Error
+                    </Card.Title>
+                    <Card.Text>
+                        A poll with the id {question_id} doesn't exist
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        )
     } else {
         let option_one_percent = (question[0].optionOne.votes.length/Object.values(users).length)*100
         let option_two_percent = (question[0].optionTwo.votes.length/Object.values(users).length)*100
@@ -56,7 +67,7 @@ const PollCard = (props) => {
                                 question[0].optionOne.votes.includes(loggedInUser) || question[0].optionTwo.votes.includes(loggedInUser) ? 
                                 (
                                     <span>
-                                        {question[0].optionOne.votes.length} {question[0].optionOne.votes.length > 1 ? 'people' : 'person'}  ({option_one_percent} percent) chose this{question[0].optionOne.votes.includes(loggedInUser) ? (<b>, including you</b>) : ''}
+                                        {question[0].optionOne.votes.length} {question[0].optionOne.votes.length > 1 || question[0].optionOne.votes.length === 0 ? 'people' : 'person'}  ({option_one_percent} percent) chose this{question[0].optionOne.votes.includes(loggedInUser) ? (<b>, including you</b>) : ''}
                                     </span>
                                 ) : 
                                 (
@@ -78,7 +89,7 @@ const PollCard = (props) => {
                                 question[0].optionOne.votes.includes(loggedInUser) || question[0].optionTwo.votes.includes(loggedInUser) ? 
                                 (
                                     <span>
-                                        {question[0].optionTwo.votes.length} {question[0].optionTwo.votes.length > 1 ? 'people' : 'person'} ({option_two_percent} percent) chose this{question[0].optionTwo.votes.includes(loggedInUser) ? (<b>, including you</b>) : ''}
+                                        {question[0].optionTwo.votes.length} {question[0].optionTwo.votes.length > 1 || question[0].optionTwo.votes.length === 0 ? 'people' : 'person'} ({option_two_percent} percent) chose this{question[0].optionTwo.votes.includes(loggedInUser) ? (<b>, including you</b>) : ''}
                                     </span>
                                 ) : 
                                 (

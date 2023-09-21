@@ -28,7 +28,6 @@ const Login = (props) => {
   const location = useLocation();
     
   try {
-    console.log(location.state)
       if (location.state.loggedIn === 'no') {
         alert("Please log in to access that page")
       }
@@ -42,7 +41,6 @@ const Login = (props) => {
     props.dispatch(handleLogin({user}));
     setLoggedIn(true)
     localStorage.setItem('user', user)
-    console.log(location.state.from.pathname)
     if (location.state?.from) {
       navigate(location.state.from.pathname)
     } else {

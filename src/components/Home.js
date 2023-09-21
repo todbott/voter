@@ -31,7 +31,9 @@ const Home = (props) => {
     
     try {
         if (!location.state.exists) {
-            alert("The post ID you entered manually in the address bar doesn't exist")
+            return (
+                <h2>404: Post doesn't exist</h2>
+            )
         }
     } catch {}
 
@@ -50,7 +52,7 @@ const Home = (props) => {
         return (
             <Container>
                 <hr></hr>
-                <Button onClick={() => answeredVisible ? setAnsweredVisible(false) : setAnsweredVisible(true)
+                <Button data-testid="show-polls-button" onClick={() => answeredVisible ? setAnsweredVisible(false) : setAnsweredVisible(true)
                 }>Show {answeredVisible ? 'New Questions' : 'Old Questions'}</Button>
                 <hr></hr>
                 <ul>
