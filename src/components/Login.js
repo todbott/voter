@@ -3,15 +3,13 @@ import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import { handleLogin } from "../actions/shared";
 import { LoadingBar } from "react-redux-loading-bar";
-import { Router, Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from "./Home";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react";
 import Header from "./Header";
 import LeaderBoard from './LeaderBoard';
 import NewPollCard from './NewPollCard';
 import PollCard from './PollCard';
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -20,8 +18,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 const Login = (props) => {
-
-  const [loggedIn, setLoggedIn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -39,7 +35,6 @@ const Login = (props) => {
 
   const login = (user) => {
     props.dispatch(handleLogin({user}));
-    setLoggedIn(true)
     localStorage.setItem('user', user)
     if (location.state?.from) {
       navigate(location.state.from.pathname)

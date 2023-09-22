@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { handleSaveNewQuestion } from "../actions/questions";
 import { useNavigate, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
-import { Card } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -11,20 +10,19 @@ const NewPollCard = (props) => {
     const [optionOne, setOptionOne] = useState("");
     const [optionTwo, setOptionTwo] = useState("");
 
-    const { current_user, dispatch } = props;
+    const { dispatch } = props;
 
     const loggedInUser = localStorage.getItem("user");
 
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
         if (!loggedInUser) {
             navigate("/", { state: { loggedIn: 'no', from: location } })
         }
-    }, [])
-
-    const navigate = useNavigate();
+    }, [location, navigate])
 
     const addPoll = (e) => {
         e.preventDefault();

@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import { React, useState, useEffect } from 'react';
-import { PollCard } from './PollCard';
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
@@ -17,9 +16,9 @@ const Home = (props) => {
         if (!loggedInUser) {
             navigate("/", { state: { loggedIn: 'no', from: location } })
         }
-    }, [])
+    }, [location, navigate])
 
-    const { questions, users, current_user } = props;
+    const { questions } = props;
     const loggedInUser = localStorage.getItem("user");
 
     const stampToDate = (t) => {

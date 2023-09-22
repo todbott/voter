@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const Header = (props) => {
-    const { current_user } = props;
+
     const loggedInUser = localStorage.getItem("user");
     const navigate = useNavigate();
     const logout = () => {

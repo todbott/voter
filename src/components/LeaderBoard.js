@@ -1,20 +1,20 @@
 import { connect } from "react-redux";
-import { useState, Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
 import Card from "react-bootstrap/Card";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const LeaderBoard = (props) => {
 
-    const { questions, users, current_user } = props;
+    const { questions, users } = props;
     const location = useLocation();
     const loggedInUser = localStorage.getItem("user");
+    const navigate = useNavigate();
+
     useEffect(() => {
         if (!loggedInUser) {
             navigate("/", { state: { loggedIn: 'no', from: location } })
         }
-    }, [])
-
-    const navigate = useNavigate();
+    }, [location, loggedInUser, navigate])
 
     const mapped = Object.values(users).map((u) => {
         let user = u.id;
@@ -34,7 +34,7 @@ const LeaderBoard = (props) => {
                     return (
                         <Card key={u.user}>
                             <Card.Body>
-                                <Card.Title><img src={u.avatarURL} style={{ padding: "10px", width: "50px" }} />{u.user}: {u.total} total</Card.Title>
+                                <Card.Title><img src={u.avatarURL} alt="user-avatar" style={{ padding: "10px", width: "50px" }} />{u.user}: {u.total} total</Card.Title>
                                 <Card.Text>
                                     {u.user} authored {u.numberAuthored} polls, and answered {u.numberAnswered}
                                 </Card.Text>

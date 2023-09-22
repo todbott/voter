@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { React, useState, Fragment, useEffect } from 'react';
+import { React, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { handleSaveQuestionAnswer } from "../actions/questions";
 import { handleSaveUserAnswer } from "../actions/users";
@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 
 const PollCard = (props) => {
 
-    const { questions, users, current_user, dispatch } = props;
+    const { questions, users, dispatch } = props;
     const { question_id } = useParams();
 
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ const PollCard = (props) => {
         if (!loggedInUser) {
             navigate("/", { state: { loggedIn: 'no', from: location } })
         }
-    }, [])
+    }, [location, navigate])
 
     const answerQuestion = (e, qid, ans) => {
         let info = {
@@ -53,7 +53,7 @@ const PollCard = (props) => {
 
         return (
             <div>
-                <h2><img src={users[question[0].author].avatarURL} style={{ width: "50px" }} /> {question[0].author} asked if people would rather </h2>
+                <h2><img src={users[question[0].author].avatarURL} alt="user-avatar" style={{ width: "50px" }} /> {question[0].author} asked if people would rather </h2>
 
 
 
