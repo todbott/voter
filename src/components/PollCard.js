@@ -108,11 +108,10 @@ const PollCard = (props) => {
     }
 }
 
-const mapStateToProps = ({ questions, users, current_user }) => {
+const mapStateToProps = ({ questions, users }) => {
     return {
         questions,
-        users,
-        current_user
+        users
     }
 }
 

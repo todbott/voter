@@ -63,10 +63,4 @@ const NewPollCard = (props) => {
 
 }
 
-const mapStateToProps = ({ current_user }) => {
-    return {
-        current_user
-    }
-}
-
-export default connect(mapStateToProps)(NewPollCard);
+export default connect()(NewPollCard);
