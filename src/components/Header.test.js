@@ -21,9 +21,17 @@ const reducers = ({
 })
 const store = configureStore({ reducer: reducers, middleware: [thunk, logger] })
 
+beforeEach(() => {
+    localStorage.setItem('user', "sarahedo")
+  });
+  
+  afterEach(() => {
+    localStorage.clear();
+  });
+
 describe('Header', () => {
     it('contains 4 buttons', () => {
-        localStorage.setItem('user', "sarahedo")
+        
         var component = render(
             <MemoryRouter>
                 <Provider store={store}>
@@ -36,7 +44,7 @@ describe('Header', () => {
     })
 
     it('shows the logged in user name in the header', () => {
-        localStorage.setItem('user', "sarahedo")
+        
         var component = render(
             <MemoryRouter>
                 <Provider store={store}>

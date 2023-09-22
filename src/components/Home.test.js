@@ -23,9 +23,17 @@ const reducers = ({
 })
 const store = configureStore({ reducer: reducers, middleware: [thunk, logger] })
 
+beforeEach(() => {
+    localStorage.setItem('user', "sarahedo")
+  });
+  
+  afterEach(() => {
+    localStorage.clear();
+  });
+
 describe('Home', () => {
     it('matches the snapshot we have on file', () => {
-        localStorage.setItem('user', "sarahedo")
+        
         var component = render(
             <MemoryRouter>
                 <Provider store={store}>
@@ -38,7 +46,7 @@ describe('Home', () => {
     })
 
     it('shows the "Show Old Questions" button by default', () => {
-        localStorage.setItem('user', "sarahedo")
+        
         var component = render(
             <MemoryRouter>
                 <Provider store={store}>
@@ -51,7 +59,7 @@ describe('Home', () => {
     })
 
     it('toggles the text of the button to "Show New Questions" when clicked', () => {
-        localStorage.setItem('user', "sarahedo")
+        
         var component = render(
             <MemoryRouter>
                 <Provider store={store}>
