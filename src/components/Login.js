@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
-import { handleLogin } from "../actions/shared";
 import { LoadingBar } from "react-redux-loading-bar";
 import { Route, Routes } from 'react-router-dom';
 import Home from "./Home";
@@ -34,7 +33,6 @@ const Login = (props) => {
   }, [props]);
 
   const login = (user) => {
-    props.dispatch(handleLogin({user}));
     localStorage.setItem('user', user)
     if (location.state?.from) {
       navigate(location.state.from.pathname)
