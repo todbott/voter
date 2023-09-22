@@ -20,7 +20,7 @@ export function saveQuestionAnswer({ authedUser, qid, answer }) {
     }
 }
 
-export function handleSaveQuestionAnswer (info) {
+export function handleSaveQuestionAnswer(info) {
     return (dispatch) => {
         dispatch(saveQuestionAnswer(info))
         return _saveQuestionAnswer(info).catch((e) => {
@@ -36,7 +36,7 @@ export function saveNewQuestion(question) {
     }
 }
 
-export function handleSaveNewQuestion (info) {
+export function handleSaveNewQuestion(info) {
     return (dispatch) => {
         return _saveQuestion(info).then(q => {
             dispatch(saveNewQuestion(q))

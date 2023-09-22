@@ -18,9 +18,9 @@ const PollCard = (props) => {
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
         if (!loggedInUser) {
-            navigate("/", {state: {loggedIn: 'no', from: location}})
+            navigate("/", { state: { loggedIn: 'no', from: location } })
         }
-    },[])
+    }, [])
 
     const answerQuestion = (e, qid, ans) => {
         let info = {
@@ -48,60 +48,60 @@ const PollCard = (props) => {
             </Card>
         )
     } else {
-        let option_one_percent = (question[0].optionOne.votes.length/Object.values(users).length)*100
-        let option_two_percent = (question[0].optionTwo.votes.length/Object.values(users).length)*100
+        let option_one_percent = (question[0].optionOne.votes.length / Object.values(users).length) * 100
+        let option_two_percent = (question[0].optionTwo.votes.length / Object.values(users).length) * 100
 
         return (
             <div>
-            <h2><img src={users[question[0].author].avatarURL} style={{width: "50px"}} /> {question[0].author} asked if people would rather </h2>
-          
-                    
-                
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>
-                                {question[0].optionOne.text}
-                            </Card.Title>
-                            <Card.Text>
+                <h2><img src={users[question[0].author].avatarURL} style={{ width: "50px" }} /> {question[0].author} asked if people would rather </h2>
+
+
+
+                <Card>
+                    <Card.Body>
+                        <Card.Title>
+                            {question[0].optionOne.text}
+                        </Card.Title>
+                        <Card.Text>
                             {(
-                                question[0].optionOne.votes.includes(loggedInUser) || question[0].optionTwo.votes.includes(loggedInUser) ? 
-                                (
-                                    <span>
-                                        {question[0].optionOne.votes.length} {question[0].optionOne.votes.length > 1 || question[0].optionOne.votes.length === 0 ? 'people' : 'person'}  ({option_one_percent} percent) chose this{question[0].optionOne.votes.includes(loggedInUser) ? (<b>, including you</b>) : ''}
-                                    </span>
-                                ) : 
-                                (
-                                    <span>
-                                        <Button onClick={(e) => answerQuestion(e, question[0].id, 'optionOne')} >Choose</Button>
-                                    </span>
-                                )
+                                question[0].optionOne.votes.includes(loggedInUser) || question[0].optionTwo.votes.includes(loggedInUser) ?
+                                    (
+                                        <span>
+                                            {question[0].optionOne.votes.length} {question[0].optionOne.votes.length > 1 || question[0].optionOne.votes.length === 0 ? 'people' : 'person'}  ({option_one_percent} percent) chose this{question[0].optionOne.votes.includes(loggedInUser) ? (<b>, including you</b>) : ''}
+                                        </span>
+                                    ) :
+                                    (
+                                        <span>
+                                            <Button onClick={(e) => answerQuestion(e, question[0].id, 'optionOne')} >Choose</Button>
+                                        </span>
+                                    )
                             )}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>
-                                {question[0].optionTwo.text}
-                            </Card.Title>
-                            <Card.Text>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <Card>
+                    <Card.Body>
+                        <Card.Title>
+                            {question[0].optionTwo.text}
+                        </Card.Title>
+                        <Card.Text>
                             {(
-                                question[0].optionOne.votes.includes(loggedInUser) || question[0].optionTwo.votes.includes(loggedInUser) ? 
-                                (
-                                    <span>
-                                        {question[0].optionTwo.votes.length} {question[0].optionTwo.votes.length > 1 || question[0].optionTwo.votes.length === 0 ? 'people' : 'person'} ({option_two_percent} percent) chose this{question[0].optionTwo.votes.includes(loggedInUser) ? (<b>, including you</b>) : ''}
-                                    </span>
-                                ) : 
-                                (
-                                    <span>
-                                        <Button onClick={(e) => answerQuestion(e, question[0].id, 'optionTwo')} >Choose</Button>
-                                    </span>
-                                )
+                                question[0].optionOne.votes.includes(loggedInUser) || question[0].optionTwo.votes.includes(loggedInUser) ?
+                                    (
+                                        <span>
+                                            {question[0].optionTwo.votes.length} {question[0].optionTwo.votes.length > 1 || question[0].optionTwo.votes.length === 0 ? 'people' : 'person'} ({option_two_percent} percent) chose this{question[0].optionTwo.votes.includes(loggedInUser) ? (<b>, including you</b>) : ''}
+                                        </span>
+                                    ) :
+                                    (
+                                        <span>
+                                            <Button onClick={(e) => answerQuestion(e, question[0].id, 'optionTwo')} >Choose</Button>
+                                        </span>
+                                    )
                             )}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                    </div>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </div>
 
 
         )
@@ -113,7 +113,7 @@ const mapStateToProps = ({ questions, users, current_user }) => {
         questions,
         users,
         current_user
-    } 
+    }
 }
 
 export default connect(mapStateToProps)(PollCard);

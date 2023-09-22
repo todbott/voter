@@ -32,7 +32,7 @@ describe('Home', () => {
                     <Home />
                 </Provider>
             </MemoryRouter>
-            
+
         );
         expect(component).toMatchSnapshot();
     })
@@ -45,7 +45,7 @@ describe('Home', () => {
                     <Home />
                 </Provider>
             </MemoryRouter>
-            
+
         );
         expect(component.getByTestId('show-polls-button')).toContainHTML("Show Old Questions")
     })
@@ -58,7 +58,7 @@ describe('Home', () => {
                     <Home />
                 </Provider>
             </MemoryRouter>
-            
+
         );
         var showPollsButton = component.getByTestId('show-polls-button');
         fireEvent.click(showPollsButton);

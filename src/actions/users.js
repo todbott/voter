@@ -19,7 +19,7 @@ export function saveUserAnswer({ authedUser, qid, answer }) {
     }
 }
 
-export function handleSaveUserAnswer (info) {
+export function handleSaveUserAnswer(info) {
     return (dispatch) => {
 
         dispatch(saveUserAnswer(info))

@@ -5,7 +5,7 @@ import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
-export function handleInitialData () {
+export function handleInitialData() {
     return (dispatch) => {
         dispatch(showLoading());
         return Promise.all([_getUsers(), _getQuestions()]).then((usersAndQuestions) => {
@@ -15,13 +15,6 @@ export function handleInitialData () {
             dispatch(recieveQuestions(questions));
             dispatch(hideLoading());
         })
-        
-        // getInitialData().then(({users, tweets}) => {
-        //     dispatch(recieveTweets(tweets));
-        //     dispatch(recieveUsers(users));
-        //     dispatch(setAuthedUser(AUTHED_ID));
-        //     dispatch(hideLoading());
-        // })
     }
 }
 

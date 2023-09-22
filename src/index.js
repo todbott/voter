@@ -22,14 +22,14 @@ const reducers = ({
 const store = configureStore({ reducer: reducers, middleware: [thunk, logger] })
 
 const container = document.getElementById('root');
-const root = createRoot(container); 
+const root = createRoot(container);
 root.render(
     <BrowserRouter>
         <Provider store={store}>
             <Login />
         </Provider>
     </BrowserRouter>
-    );
+);
 
 // ReactDOM.render(
 //     <BrowserRouter>

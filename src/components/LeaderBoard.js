@@ -10,9 +10,9 @@ const LeaderBoard = (props) => {
     const loggedInUser = localStorage.getItem("user");
     useEffect(() => {
         if (!loggedInUser) {
-            navigate("/", {state: {loggedIn: 'no', from: location}})
+            navigate("/", { state: { loggedIn: 'no', from: location } })
         }
-    },[])
+    }, [])
 
     const navigate = useNavigate();
 
@@ -22,29 +22,30 @@ const LeaderBoard = (props) => {
         let numberAuthored = Object.values(questions).filter((q) => q.author === user).length;
         let numberAnswered = Object.values(questions).filter((q) => (q.optionOne.votes.includes(user) || (q.optionTwo.votes.includes(user)))).length;
         let total = numberAnswered + numberAuthored
-        return Object.create({user, avatarURL, numberAuthored, numberAnswered, total})})
-       
-    const sorted = Object.values(mapped).sort((a, b) => b.total-a.total)
+        return Object.create({ user, avatarURL, numberAuthored, numberAnswered, total })
+    })
 
-        return (
-            <div>
-                {
-                    Object.values(sorted).map((u) => {
+    const sorted = Object.values(mapped).sort((a, b) => b.total - a.total)
+
+    return (
+        <div>
+            {
+                Object.values(sorted).map((u) => {
                     return (
-                    <Card key={u.user}>
-                        <Card.Body>
-                            <Card.Title><img src={u.avatarURL} style={{padding: "10px", width: "50px"}}/>{u.user}: {u.total} total</Card.Title>
-                            <Card.Text>
-                            {u.user} authored {u.numberAuthored} polls, and answered {u.numberAnswered}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
+                        <Card key={u.user}>
+                            <Card.Body>
+                                <Card.Title><img src={u.avatarURL} style={{ padding: "10px", width: "50px" }} />{u.user}: {u.total} total</Card.Title>
+                                <Card.Text>
+                                    {u.user} authored {u.numberAuthored} polls, and answered {u.numberAnswered}
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
                     )
                 })
-                }
-            </div>
-        )
-    
+            }
+        </div>
+    )
+
 }
 
 const mapStateToProps = ({ questions, users, current_user }) => {
@@ -52,7 +53,7 @@ const mapStateToProps = ({ questions, users, current_user }) => {
         questions,
         users,
         current_user
-    } 
+    }
 }
 
 export default connect(mapStateToProps)(LeaderBoard);

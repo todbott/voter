@@ -8,25 +8,25 @@ export default function questions(state = [], action) {
                 ...action.questions,
             }
         case SAVE_QUESTION_ANSWER:
-            
+
             return {
                 ...state,
                 [action.qid]: {
                     ...state[action.qid],
                     [action.answer]: {
-                      ...state[action.qid][action.answer],
-                      votes: state[action.qid][action.answer].votes.concat([action.authedUser])
+                        ...state[action.qid][action.answer],
+                        votes: state[action.qid][action.answer].votes.concat([action.authedUser])
                     }
-                  }
+                }
             }
         case SAVE_NEW_QUESTION:
             console.groupEnd();
             return {
                 ...state,
                 [action.question.id]: action.question,
-                
+
             }
-    default:
-        return state;
+        default:
+            return state;
     }
 }
