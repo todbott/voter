@@ -36,32 +36,32 @@ const NewPollCard = (props) => {
     }
 
     return (
-        
-            !loggedInUser ? (
-                <div></div>
-            ) : (
-                <div>
-                    <h2>Would you rather...</h2>
-                    <Form onSubmit={addPoll}>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Option one</Form.Label>
-                            <Form.Control type="text" placeholder="option one" onChange={e => setOptionOne(e.target.value)} />
-                            <Form.Text className="text-muted" >
-                            </Form.Text>
-                        </Form.Group>
 
-                        <Form.Group className="mb-3">
-                            <Form.Label>Option two</Form.Label>
-                            <Form.Control type="text" placeholder="option two" onChange={(e) => setOptionTwo(e.target.value)} />
-                            <Form.Text className="text-muted">
-                            </Form.Text>
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                </div>
-            )
+        !loggedInUser ? (
+            <div></div>
+        ) : (
+            <div>
+                <h2>Would you rather...</h2>
+                <Form onSubmit={addPoll}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Option one</Form.Label>
+                        <Form.Control type="text" placeholder="option one" onChange={e => setOptionOne(e.target.value)} />
+                        <Form.Text className="text-muted" >
+                        </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        <Form.Label>Option two</Form.Label>
+                        <Form.Control type="text" placeholder="option two" onChange={(e) => setOptionTwo(e.target.value)} />
+                        <Form.Text className="text-muted">
+                        </Form.Text>
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
+            </div>
+        )
     )
 
 }

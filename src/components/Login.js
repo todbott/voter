@@ -21,12 +21,12 @@ const Login = (props) => {
   const navigate = useNavigate();
 
   const location = useLocation();
-    
+
   try {
-      if (location.state.loggedIn === 'no') {
-        alert("Please log in to access that page")
-      }
-  } catch {}
+    if (location.state.loggedIn === 'no') {
+      alert("Please log in to access that page")
+    }
+  } catch { }
 
   useEffect(() => {
     props.dispatch(handleInitialData())
@@ -44,30 +44,30 @@ const Login = (props) => {
   const loggedInUser = localStorage.getItem("user");
 
   return (
-    
-      <Container fluid style={{ paddingTop: 10 }}>
-        {
-          props.loading === true ? <LoadingBar /> : (
-            loggedInUser && (<Header />)
+
+    <Container fluid style={{ paddingTop: 10 }}>
+      {
+        props.loading === true ? <LoadingBar /> : (
+          loggedInUser && (<Header />)
         )}
-            
-            <Routes>
-                <Route
-                  exact path="/"
-                  element={
-                    <DropdownButton title="login" onSelect={(e) => login(e)}>
-                      <Dropdown.Item eventKey="sarahedo">Sarah Edo</Dropdown.Item>
-                      <Dropdown.Item eventKey="mtsamis">Mike Tsamis</Dropdown.Item>
-                      <Dropdown.Item eventKey="tylermcginnis">Tyler McGinnis</Dropdown.Item>
-                      <Dropdown.Item eventKey="zoshikanlu">Zenobia Oshikanlu</Dropdown.Item>
-                  </DropdownButton>}
-                />
-                <Route path="/home" element={<Home />} />
-                <Route path="/leaderboard" element={<LeaderBoard />} />
-                <Route path="/add" element={<NewPollCard />} />
-                <Route path="/questions/:question_id" element={<PollCard />} />
-              </Routes>
-      </Container>
+
+      <Routes>
+        <Route
+          exact path="/"
+          element={
+            <DropdownButton title="login" onSelect={(e) => login(e)}>
+              <Dropdown.Item eventKey="sarahedo">Sarah Edo</Dropdown.Item>
+              <Dropdown.Item eventKey="mtsamis">Mike Tsamis</Dropdown.Item>
+              <Dropdown.Item eventKey="tylermcginnis">Tyler McGinnis</Dropdown.Item>
+              <Dropdown.Item eventKey="zoshikanlu">Zenobia Oshikanlu</Dropdown.Item>
+            </DropdownButton>}
+        />
+        <Route path="/home" element={<Home />} />
+        <Route path="/leaderboard" element={<LeaderBoard />} />
+        <Route path="/add" element={<NewPollCard />} />
+        <Route path="/questions/:question_id" element={<PollCard />} />
+      </Routes>
+    </Container>
   )
 };
 

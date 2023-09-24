@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { Link  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { Container } from "react-bootstrap";
