@@ -61,7 +61,7 @@ const Home = (props) => {
                     {
                         answeredVisible === false && newQuestions.map((q) => (
                             <Card key={q.id}>
-                                <Link to={`questions/${q.id}`}>
+                                <Link to={`/questions/${q.id}`}>
                                     <Card.Body>
                                         <Card.Title>Poll created by {q.author}</Card.Title>
                                         <Card.Text>{stampToDate(q.timestamp)}</Card.Text>
@@ -75,7 +75,7 @@ const Home = (props) => {
                     {
                         answeredVisible === true && doneQuestions.map((q) => (
                             <Card key={q.id}>
-                                <Link to={`questions/${q.id}`}>
+                                <Link to={`/questions/${q.id}`}>
                                     <Card.Body>
                                         <Card.Title>Poll created by {q.author}</Card.Title>
                                         <Card.Text>{stampToDate(q.timestamp)}</Card.Text>

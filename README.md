@@ -37,9 +37,10 @@ The app contains 10 tests
 - 5 tests that test functions in the database, and
 - 2 tests that make sure things are present in the document
 
-To run the tests, simply run the following command in the project directory:
+To run the tests, simply run either of the following commands in the project directory:
 
 ### `npm test`
+### `npm run test`
 
 ## Deployment
 

@@ -30,7 +30,7 @@ const PollCard = (props) => {
         }
         dispatch(handleSaveQuestionAnswer(info))
         dispatch(handleSaveUserAnswer(info))
-        navigate('/home')
+        navigate(`/home/questions/${qid}`)
     }
 
 
@@ -56,7 +56,7 @@ const PollCard = (props) => {
 
         return (
             <div>
-                <h2><img src={users[question[0].author].avatarURL} alt="user-avatar" style={{ width: "50px" }} /> {question[0].author} asked if people would rather </h2>
+                <h2><img src={users[question[0].author].avatarURL} alt="user-avatar" style={{ width: "50px" }} /> {question[0].author} asks "Would you rather.." </h2>
                 <Card>
                     <Card.Body>
                         <Card.Title>

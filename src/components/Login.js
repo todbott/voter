@@ -65,7 +65,7 @@ const Login = (props) => {
                 <Route path="/home" element={<Home />} />
                 <Route path="/leaderboard" element={<LeaderBoard />} />
                 <Route path="/add" element={<NewPollCard />} />
-                <Route path="/home/questions/:question_id" element={<PollCard />} />
+                <Route path="/questions/:question_id" element={<PollCard />} />
               </Routes>
       </Container>
   )
