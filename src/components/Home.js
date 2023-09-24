@@ -49,40 +49,44 @@ const Home = (props) => {
 
 
     return (
-        <Container>
-            <hr></hr>
-            <Button data-testid="show-polls-button" onClick={() => answeredVisible ? setAnsweredVisible(false) : setAnsweredVisible(true)
-            }>Show {answeredVisible ? 'New Questions' : 'Old Questions'}</Button>
-            <hr></hr>
-            <ul>
-                {
-                    answeredVisible === false && newQuestions.map((q) => (
-                        <Card key={q.id}>
-                            <Link to={`questions/${q.id}`}>
-                                <Card.Body>
-                                    <Card.Title>Poll created by {q.author}</Card.Title>
-                                    <Card.Text>{stampToDate(q.timestamp)}</Card.Text>
-                                </Card.Body>
-                            </Link>
-                        </Card>
-                    ))
-                }
-            </ul>
-            <ul>
-                {
-                    answeredVisible === true && doneQuestions.map((q) => (
-                        <Card key={q.id}>
-                            <Link to={`questions/${q.id}`}>
-                                <Card.Body>
-                                    <Card.Title>Poll created by {q.author}</Card.Title>
-                                    <Card.Text>{stampToDate(q.timestamp)}</Card.Text>
-                                </Card.Body>
-                            </Link>
-                        </Card>
-                    ))
-                }
-            </ul>
-        </Container>
+        !loggedInUser ? (
+            <div></div>
+        ) : (
+            <Container>
+                <hr></hr>
+                <Button data-testid="show-polls-button" onClick={() => answeredVisible ? setAnsweredVisible(false) : setAnsweredVisible(true)
+                }>Show {answeredVisible ? 'New Questions' : 'Old Questions'}</Button>
+                <hr></hr>
+                <ul>
+                    {
+                        answeredVisible === false && newQuestions.map((q) => (
+                            <Card key={q.id}>
+                                <Link to={`questions/${q.id}`}>
+                                    <Card.Body>
+                                        <Card.Title>Poll created by {q.author}</Card.Title>
+                                        <Card.Text>{stampToDate(q.timestamp)}</Card.Text>
+                                    </Card.Body>
+                                </Link>
+                            </Card>
+                        ))
+                    }
+                </ul>
+                <ul>
+                    {
+                        answeredVisible === true && doneQuestions.map((q) => (
+                            <Card key={q.id}>
+                                <Link to={`questions/${q.id}`}>
+                                    <Card.Body>
+                                        <Card.Title>Poll created by {q.author}</Card.Title>
+                                        <Card.Text>{stampToDate(q.timestamp)}</Card.Text>
+                                    </Card.Body>
+                                </Link>
+                            </Card>
+                        ))
+                    }
+                </ul>
+            </Container>
+        )
     )
 
 }

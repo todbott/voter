@@ -33,8 +33,11 @@ const PollCard = (props) => {
         navigate('/home')
     }
 
+
     const question = Object.values(questions).filter((q) => q.id === question_id)
-    if (question.length === 0) {
+    if (!loggedInUser) {
+        return (<></>)
+    } else if (question.length === 0) {
         return (
             <Card>
                 <Card.Body>
@@ -54,9 +57,6 @@ const PollCard = (props) => {
         return (
             <div>
                 <h2><img src={users[question[0].author].avatarURL} alt="user-avatar" style={{ width: "50px" }} /> {question[0].author} asked if people would rather </h2>
-
-
-
                 <Card>
                     <Card.Body>
                         <Card.Title>
@@ -102,8 +102,6 @@ const PollCard = (props) => {
                     </Card.Body>
                 </Card>
             </div>
-
-
         )
     }
 }

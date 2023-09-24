@@ -27,23 +27,28 @@ const LeaderBoard = (props) => {
 
     const sorted = Object.values(mapped).sort((a, b) => b.total - a.total)
 
+
     return (
-        <div>
-            {
-                Object.values(sorted).map((u) => {
-                    return (
-                        <Card key={u.user}>
-                            <Card.Body>
-                                <Card.Title><img src={u.avatarURL} alt="user-avatar" style={{ padding: "10px", width: "50px" }} />{u.user}: {u.total} total</Card.Title>
-                                <Card.Text>
-                                    {u.user} authored {u.numberAuthored} polls, and answered {u.numberAnswered}
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    )
-                })
-            }
-        </div>
+        !loggedInUser ? (
+            <div></div>
+        ) : (
+            <div>
+                {
+                    Object.values(sorted).map((u) => {
+                        return (
+                            <Card key={u.user}>
+                                <Card.Body>
+                                    <Card.Title><img src={u.avatarURL} alt="user-avatar" style={{ padding: "10px", width: "50px" }} />{u.user}: {u.total} total</Card.Title>
+                                    <Card.Text>
+                                        {u.user} authored {u.numberAuthored} polls, and answered {u.numberAnswered}
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        )
+                    })
+                }
+            </div>
+        )
     )
 
 }
