@@ -30,27 +30,19 @@ const PollCard = (props) => {
         }
         dispatch(handleSaveQuestionAnswer(info))
         dispatch(handleSaveUserAnswer(info))
-        navigate(`/home/questions/${qid}`)
+        navigate(`/questions/${qid}`)
     }
 
 
     const question = Object.values(questions).filter((q) => q.id === question_id)
     if (!loggedInUser) {
         return (<></>)
-    } else if (question.length === 0) {
+    } else if ((question.length === 0) && (users.length === 0)) {
         return (
-            <Card>
-                <Card.Body>
-                    <Card.Title>
-                        404 Error
-                    </Card.Title>
-                    <Card.Text>
-                        A poll with the id {question_id} doesn't exist
-                    </Card.Text>
-                </Card.Body>
-            </Card>
+            <></>
         )
-    } else {
+    } else if (question.length > 0) {
+        const question = Object.values(questions).filter((q) => q.id === question_id)
         let option_one_percent = (question[0].optionOne.votes.length / Object.values(users).length) * 100
         let option_two_percent = (question[0].optionTwo.votes.length / Object.values(users).length) * 100
 
@@ -102,6 +94,19 @@ const PollCard = (props) => {
                     </Card.Body>
                 </Card>
             </div>
+        )
+    } else {
+        return (
+            <Card>
+                <Card.Body>
+                    <Card.Title>
+                        404 Error
+                    </Card.Title>
+                    <Card.Text>
+                        A poll with the id {question_id} doesn't exist
+                    </Card.Text>
+                </Card.Body>
+            </Card>
         )
     }
 }

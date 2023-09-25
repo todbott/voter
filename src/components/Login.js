@@ -72,4 +72,4 @@ const Login = (props) => {
 };
 
 
-export default connect()(Login);//mapStateToProps)(Login);
+export default connect()(Login);
